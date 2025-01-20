@@ -1,0 +1,63 @@
+<style>
+   .body {
+      display: flex;
+      min-height: 100vh;
+  }
+  
+  .running-line-wrapper {
+      margin: auto;
+      width: 100%;
+      overflow: hidden;
+      background-color:orange;
+  }
+  
+  .running-line {
+      font-size: 15px;
+      font-family: sans-serif;
+      font-weight: 100;
+      text-transform: uppercase;
+      color: #444;
+      white-space: nowrap;
+      display: flex;
+      gap: 60px; 
+      font-weight:bold;
+      animation: run 10s linear infinite;
+
+  }
+ 
+  
+  .running-line span:hover {
+   animation-play-state: paused;
+}
+  
+  @keyframes run {
+      from {
+          transform: translateX(0%);
+      }
+      to {
+          transform: translateX(-1683.35px);
+      }
+  }
+</style>
+
+<div class="running-line-wrapper">
+    <div class="running-line">
+       <!-- The overall width of the text element should be twice the width of the screen -->
+       <span> ⚡️Free world wide shopping</span>
+       <span> ⚡️Buy 2 get 2</span>
+       <span> ⚡️Refer and Earn 15$</span>
+       <span> ⚡️Free world wide shopping</span>
+
+
+    </div>
+ </div>
+ 
+{% schema %}
+{
+"presets": [
+    {
+    "name": "infinite scrolling"
+    }
+]
+}
+{% endschema %}

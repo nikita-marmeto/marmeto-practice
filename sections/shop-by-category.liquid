@@ -1,0 +1,167 @@
+{% style %}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .section {
+    width: 100%;
+    padding: 20px;
+    border:2px solid white;
+    border-radius:10px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight:bold;
+  }
+
+  .splide__slide {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    text-align: center;
+    width: calc(16.66% - 20px);
+
+
+  }
+
+
+
+  .splide__slide img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .splide__slide h3 {
+    font-size: 1.2em;
+    margin-top: 10px;
+    font-weight:bold;
+    white-space:nowrap;
+    overflow:hidden;
+    width;100%;
+    text-align:center;
+  }
+
+.look-off-section__media-card{
+  display:flex;
+}
+  @media (max-width: 768px) {
+    .splide__slide  {
+      width: calc(50% - 20px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .splide__slide  {
+      width: 100%;
+    }
+  }
+  @media (min-width:1200px){
+    .splide_arrow{
+        display:none !important;
+    }
+  }
+{% endstyle %}
+
+<section class="section">
+  <h2>{{ section.settings.section_heading }}</h2>
+
+  <!-- Splide Container -->
+  <div class="splide" id="splide-slider">
+    <div class="splide__track">
+      <ul class="splide__list">
+        {% for block in section.blocks %}
+          <li class="splide__slide">
+            <a href="{{ block.settings.image_url }}" class="look-off-section__media-card">
+              {% if block.settings.image %}
+                <img src="{{ block.settings.image | img_url: 'master' }}" alt="image" height="200" width="200">
+              {% endif %}
+            </a>
+            <h3>{{ block.settings.title }}</h3>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Look off section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "section heading",
+      "default": "heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "card",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "image"
+        },
+        {
+          "type": "url",
+          "id": "image_url",
+          "label": "image url"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "look-off-section"
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+  document.addEventListener('DOMContentLoaded', function () {
+    new Splide('#splide-slider', {
+      type: 'loop',
+      perPage: 6,
+    //   perMove    : 1,
+      gap: '2rem',
+
+      arrows: false,
+      breakpoints: {
+        768: {
+          perPage: 2,
+          arrows: true,
+        },
+        480: {
+          perPage: 1,
+          arrows: true,
+        },
+        1200: {
+          arrows: false,
+        },
+      },
+    }).mount();
+  });
+{% endjavascript %}
