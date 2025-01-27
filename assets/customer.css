@@ -3,18 +3,25 @@
   max-width: 33.4rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  text-align: center;
+  /* text-align: center; */
 }
 
 @media screen and (min-width: 750px) {
   .customer:not(.account):not(.order) {
-    max-width: 47.8rem;
+    /* max-width: 47.8rem; */
+    max-width: 720px;
   }
 }
 
-.customer > h1,
+.customer > h2,
 .customer__title {
-  margin-top: 0;
+  margin: 20px;
+  color: rgba(255, 156, 84, 1);
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 57px;
+  text-align: center;
+  font-family: 'BalooTamma', sans-serif !important;
 }
 
 .customer form {
@@ -22,7 +29,13 @@
 }
 
 .customer button {
-  margin: 4rem 0 1.5rem;
+  margin-top: 32px; 
+  background-color: rgba(255, 137, 51, 1);
+  border-radius: 100px;
+  font-size: 20px;
+    line-height: 140%;
+    padding: 14px 64px;
+   margin-left: 215px;
 }
 
 .customer ul {
@@ -331,7 +344,7 @@
 /* Login */
 .login a {
   display: block;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   width: fit-content;
 }
 

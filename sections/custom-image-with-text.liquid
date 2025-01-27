@@ -1,0 +1,125 @@
+{% style %}
+  .custom-image-with-text{
+    display:flex;
+    gap:10rem;
+  }
+ .button{
+    background-color:orange;
+    left:52%;
+    border-radius:20px;
+    position:absolute;
+    margin-top:10rem;
+ }
+.button:after{
+    content:none;
+ }
+ .custom-image-with-text {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+  }
+  .custom-image-with-text.content-right {
+    flex-direction: row-reverse;
+  }
+ .custom-image-with-text_media-item{
+    height:450px;
+    width:480px;
+ }
+.custom-image-with-text__text{
+    font-weight:400px;
+    margin-top:9rem;
+}
+.custom-image-with-text__heading1{
+    color:rgba(232, 97, 0, 1);
+}
+.custom-image-with-text__heading2{
+color:yellow;
+}
+ .main-heading{
+    display:flex;
+    justify-content:center;
+    gap:1rem;
+    /* font-family:Baloo Tamma; */
+ }
+{% endstyle %}
+<div class="main-heading">
+<h2 class="custom-image-with-text__heading1">{{ section.settings.section_heading }} </h2>
+<h2 class="custom-image-with-text__heading2"> Gummazing</h2>
+</div>
+<div class="page-width">
+  <div class="custom-image-with-text {% if section.settings.content_position == 'right' %}content-right{% endif %}">
+    <div class="custom-image-with-text_media-item">
+      <div class="custom-image-with-text_media">
+        {%- if section.settings.section_image != blank -%}
+          <img src="{{ section.settings.section_image | img_url:'master' }}" alt="image" >
+        {% endif %}
+      </div>
+      
+    </div>
+    
+    <div class="custom-image-with-text__text"> {{ section.settings.section_text }}
+        <div class="button">{{ section.settings.section_button }}</div>
+    
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "image-with-text",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "section_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Content Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Content Left, Image Right"
+        },
+        {
+          "value": "right",
+          "label": "Content Right, Image Left"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_image",
+      "label": "image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_text",
+      "label": "text"
+    },
+    {
+      "type": "richtext",
+      "id": "section_button",
+      "label": "button"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "url"
+    }
+  ],
+  "presets": [
+    {
+      "name": "custom image with text"
+    }
+  ]
+}
+{% endschema %}

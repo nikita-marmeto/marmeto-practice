@@ -1,4 +1,4 @@
-{% style %}
+ {% style %}
   * {
     margin: 0;
     padding: 0;
@@ -16,73 +16,27 @@
     text-align: center;
     margin-bottom: 20px;
     font-weight:bold;
+    color:orange;
+    
   }
-
-  .splide__slide {
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
-    background-color: #f4f4f4;
-    padding: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    text-align: center;
-    width: calc(16.66% - 20px);
-
-
-  }
-
-
-
-  .splide__slide img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-
-  .splide__slide h3 {
-    font-size: 1.2em;
-    margin-top: 10px;
-    font-weight:bold;
-    white-space:nowrap;
-    overflow:hidden;
-    width;100%;
-    text-align:center;
-  }
-
-.look-off-section__media-card{
-  display:flex;
+.shop-by-category-splide__list{
+display:flex;
+list-style:none;
 }
-  @media (max-width: 768px) {
-    .splide__slide  {
-      width: calc(50% - 20px);
-    }
-  }
-
-  @media (max-width: 480px) {
-    .splide__slide  {
-      width: 100%;
-    }
-  }
-  @media (min-width:1200px){
-    .splide_arrow{
-        display:none !important;
-    }
-  }
-{% endstyle %}
+.shop-by-category-media-card{
+  padding:13px;
+}
+{% endstyle %} 
 
 <section class="section">
   <h2>{{ section.settings.section_heading }}</h2>
 
-  <!-- Splide Container -->
-  <div class="splide" id="splide-slider">
-    <div class="splide__track">
-      <ul class="splide__list">
+  <div class="shop-by-category-splide" id="splide-slider">
+    <div class="shop-by-category-splide__track">
+      <ul class="shop-by-category-splide__list">
         {% for block in section.blocks %}
-          <li class="splide__slide">
-            <a href="{{ block.settings.image_url }}" class="look-off-section__media-card">
+          <li class="shop-by-category-splide__slide">
+            <a href="{{ block.settings.collection  }}" class="shop-by-category-media-card" >
               {% if block.settings.image %}
                 <img src="{{ block.settings.image | img_url: 'master' }}" alt="image" height="200" width="200">
               {% endif %}
@@ -114,6 +68,11 @@
       "name": "card",
       "limit": 6,
       "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
         {
           "type": "image_picker",
           "id": "image",

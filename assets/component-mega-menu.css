@@ -51,7 +51,48 @@
   transition: text-decoration var(--duration-short) ease;
   word-wrap: break-word;
 }
+.mega-menu-card {
+  background-color: #fff; /* Card background color */
+  border: 1px solid #ddd; /* Border around the card */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Ensure content doesn't overflow */
+  text-align: center; /* Center align text */
+  height: 200px; /* Set a consistent height */
+  width: 100%; /* Make it responsive */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
+.mega-menu-card:hover {
+  transform: translateY(-5px); /* Subtle lift on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+}
+
+.mega-menu-card-image {
+  width: 100%;
+  height: 120px; /* Adjust image height */
+  background-color: #f9f9f9; /* Fallback background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mega-menu-card-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover; /* Ensure the image fits well */
+  border-bottom: 1px solid #ddd; /* Add a separator line below the image */
+}
+
+.mega-menu-card-title {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333; /* Adjust text color */
+}
 .mega-menu__link--level-2 {
   font-weight: bold;
 }
@@ -79,7 +120,8 @@
 }
 
 .mega-menu .mega-menu__list--condensed {
-  display: block;
+  /* display: block; */
+  display: flex;
 }
 
 .mega-menu__list--condensed .mega-menu__link {

@@ -37,6 +37,7 @@
                   {%- for childlink in link.links -%}
                     <li>
                       <a
+
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                         href="{{ childlink.url }}"
                         class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
@@ -44,6 +45,17 @@
                           aria-current="page"
                         {% endif %}
                       >
+                        {% assign link_object = collections[childlink.handle] %}
+                          <div class="mega-menu-card">
+                          {% if link_object.image != blank %}
+                            <div class="mega-menu-card-image">
+                              {% render 'responsive-picture', desktopImage: link_object.image , class: "image-fit" %}
+                            </div>
+                          {% endif %}
+                          {% comment %} <div class="mega-menu-card-title">
+                            {{ childlink.title }}
+                          </div> {% endcomment %}
+                        </div>
                         {{ childlink.title | escape }}
                       </a>
                       {%- if childlink.links != blank -%}

@@ -1,0 +1,295 @@
+<style>
+    .hero-slider-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 70px;
+        overflow: hidden;
+      }
+    
+      .slider-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+      }
+    
+      .hero-slider {
+        position: relative;
+        width: 100%;
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+    
+      .hero-slide {
+        flex: 0 0 100%;
+        width: 100%;
+        position: relative;
+      }
+    
+      .hero-slide-link {
+        display: block;
+        width: 100%;
+        cursor: pointer;
+      }
+    
+      .slide-image-container {
+        position: relative;
+        width: 100%;
+      }
+    
+      .hero-slide-image {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+      }
+    
+      .slider-pagination {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 7px;
+        z-index: 1;
+        padding: 15px 0;
+        pointer-events: auto;
+        background: transparent;
+        margin-bottom: 0;
+      }
+    
+      .pagination-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        background-color: #e0e0e0;
+      }
+    
+      .pagination-dot.active {
+        transform: scale(1.3);
+      }
+    
+      .wave-bottom {
+        position: absolute;
+        bottom: 2px;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        line-height: 0;
+        z-index: 2;
+        pointer-events: none;
+      }
+    
+      .wave-bottom svg {
+        display: block;
+        width: 100%;
+        height: 50px;
+        margin-bottom: -25px;
+      }
+    
+      .wave-bottom path {
+        transition: all 0.3s ease;
+      }
+    
+      @media screen and (max-width: 768px) {
+        .hero-slider-wrapper {
+          padding-bottom: 60px;
+        }
+    
+        .slider-pagination {
+          margin-bottom: 0;
+          gap: 5px;
+        }
+    
+        .pagination-dot {
+          width: 8px;
+          height: 8px;
+        }
+    
+        .wave-bottom {
+          bottom: 15px;
+        }
+    
+        .wave-bottom svg {
+          height: 40px;
+          margin-bottom: -20px;
+        }
+      }
+    
+      @media screen and (max-width: 480px) {
+        .hero-slider-wrapper {
+          padding-bottom: 50px;
+        }
+    
+        .slider-pagination {
+          gap: 4px;
+        }
+    
+        .pagination-dot {
+          width: 7px;
+          height: 7px;
+        }
+    
+        .wave-bottom {
+          bottom: 10px;
+        }
+    
+        .wave-bottom svg {
+          height: 30px;
+          margin-bottom: -15px;
+        }
+      }
+    </style>
+
+    
+<div class="hero-slider-wrapper">
+    <div class="slider-container">
+      <div class="hero-slider">
+        {% for block in section.blocks %}
+          {% if block.type == 'slide' %}
+            <div class="hero-slide" {{ block.shopify_attributes }}>
+              {% if block.settings.slide_link %}
+                <a href="{{ block.settings.slide_link }}" class="hero-slide-link">
+              {% endif %}
+              <div class="slide-image-container">
+                {% if block.settings.slide_image %}
+                  {{ block.settings.slide_image | img_url: 'master' | img_tag: '', 'hero-slide-image' }}
+                {% endif %}
+              </div>
+              {% if block.settings.slide_link %}
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="wave-bottom">
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 1440 50"
+          preserveAspectRatio="none"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M-1 4.18967L33.8242 3.23529C67.4475 2.28091 135.895 0.372146 204.342 6.09844C273.991 11.8247 342.438 25.1861 410.886 26.1405C479.333 27.0948 547.781 15.6423 616.228 14.6879C684.676 13.7335 754.324 23.2773 822.772 24.2317C891.219 25.1861 959.667 17.551 1028.11 10.8703C1096.56 4.18967 1165.01 -1.53662 1234.66 0.372146C1303.1 2.28091 1371.55 11.8247 1405.18 16.5966L1440 21.3685V50H1405.18C1371.55 50 1303.1 50 1234.66 50C1165.01 50 1096.56 50 1028.11 50C959.667 50 891.219 50 822.772 50C754.324 50 684.676 50 616.228 50C547.781 50 479.333 50 410.886 50C342.438 50 273.991 50 204.342 50C135.895 50 67.4475 50 33.8242 50H-1V4.18967Z" fill="white"/>
+        </svg>
+      </div>
+    </div>
+    <div class="slider-pagination" style="bottom: {{ section.settings.pagination_position }}px;">
+      {% for block in section.blocks %}
+        {% if block.type == 'slide' %}
+          <span
+            class="pagination-dot"
+            style="background-color: {{ block.settings.dot_color }}; {% if forloop.first %}box-shadow: 0 0 8px 2px {{ block.settings.dot_color }}80;{% endif %}"
+            data-shadow-color="{{ block.settings.dot_color }}"
+          ></span>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% schema %}
+{
+  "name": "Hero Slider",
+  "settings": [
+    {
+      "type": "range",
+      "id": "pagination_position",
+      "label": "Pagination Position",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15,
+      "info": "Controls the vertical position (0-100px)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slide_image",
+          "label": "Slide Image"
+        },
+        {
+          "type": "color",
+          "id": "dot_color",
+          "label": "Pagination Dot Color",
+          "default": "#FF6B6B"
+        },
+        {
+          "type": "url",
+          "id": "slide_link",
+          "label": "Slide Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Slider",
+      "blocks": [
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+<script>
+    
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.hero-slider');
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.pagination-dot');
+    let currentSlide = 0;
+  
+    function setSliderHeight() {
+      const firstImage = document.querySelector('.hero-slide-image');
+      if (firstImage) {
+        const imageHeight = firstImage.offsetHeight;
+        document.querySelector('.slider-container').style.height = `${imageHeight}px`;
+      }
+    }
+  
+    window.addEventListener('load', setSliderHeight);
+    window.addEventListener('resize', setSliderHeight);
+  
+    // Initialize dots
+    dots[0].classList.add('active');
+  
+    // Set up click events for dots
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        goToSlide(index);
+      });
+    });
+  
+    function goToSlide(index) {
+      currentSlide = index;
+      slider.style.transform = `translateX(-${index * 100}%)`;
+  
+      // Update active dot with shadow
+      dots.forEach(dot => {
+        dot.classList.remove('active');
+        dot.style.boxShadow = 'none';
+      });
+      dots[index].classList.add('active');
+      const shadowColor = dots[index].getAttribute('data-shadow-color');
+      dots[index].style.boxShadow = `0 0 8px 2px ${shadowColor}80`;
+    }
+  
+    // Optional: Add auto-sliding functionality
+    function autoSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      goToSlide(currentSlide);
+    }
+   
+    // Uncomment the following line to enable auto-sliding
+    // setInterval(autoSlide, 5000); // Changes slide every 5 seconds
+  });
+    </script>

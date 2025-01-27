@@ -1,3 +1,49 @@
+<style>
+  .new {
+    margin-left: 200px;
+  }
+  .new p {
+    display: flex;
+    font-weight:400;
+    font-size:16px;
+  }
+
+  /* Wrapper for each input field */
+  .field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    width:710px;
+    }
+
+  /* Styling for the label */
+  .field__label {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  /* Styling for the input field */
+  .field__input {
+    padding: 16px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    line-height:150%;
+    {% comment %} width: 100%;
+    height: 50px; /* Adjusted height */
+    box-sizing: border-box; {% endcomment %}
+  }
+
+  /* Input focus effect */
+  .field__input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+  }
+</style>
+
 {{ 'customer.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
@@ -30,6 +76,9 @@
     {%- form 'recover_customer_password' -%}
       {% assign recover_success = form.posted_successfully? %}
       <div class="field">
+        <label for="RecoverEmail" class="field__label">
+          {{ 'customer.login_page.email' | t }}
+        </label>
         <input
           type="email"
           value=""
@@ -38,16 +87,13 @@
           autocorrect="off"
           autocapitalize="off"
           autocomplete="email"
+          class="field__input"
           {% if form.errors %}
             aria-invalid="true"
             aria-describedby="RecoverEmail-email-error"
             autofocus
           {% endif %}
-          placeholder="{{ 'customer.login_page.email' | t }}"
         >
-        <label for="RecoverEmail">
-          {{ 'customer.login_page.email' | t }}
-        </label>
       </div>
       {%- if form.errors -%}
         <small id="RecoverEmail-email-error" class="form__message">
@@ -68,9 +114,10 @@
     {%- endform -%}
   </div>
 
-  <h1 id="login" tabindex="-1">
-    {{ 'customer.login_page.title' | t }}
-  </h1>
+  <h2 id="login" tabindex="-1">
+    {% comment %} {{ 'customer.login_page.title' | t }} {% endcomment %}
+     Login
+  </h2>
   <div>
     {%- if recover_success == true -%}
       <h3 class="form__message" tabindex="-1" autofocus>
@@ -105,53 +152,66 @@
       {%- endif -%}
 
       <div class="field">
+        <label for="CustomerEmail" class="field__label">
+          Email
+        </label>
         <input
           type="email"
+          value="" 
           name="customer[email]"
           id="CustomerEmail"
-          autocomplete="email"
+          placeholder="Email"
+          autocomplete="off"
           autocorrect="off"
           autocapitalize="off"
-          {% if form.errors contains 'form' %}
-            aria-invalid="true"
-          {% endif %}
-          placeholder="{{ 'customer.login_page.email' | t }}"
+          class="field__input"
+          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+          required
+          title="Please enter a valid email address"
         >
-        <label for="CustomerEmail">
-          {{ 'customer.login_page.email' | t }}
-        </label>
+        <small id="CustomerEmail-error" class="form__message" style="color: red; display: none;">
+          Please enter a valid email address.
+        </small>
       </div>
-
-      {%- if form.password_needed -%}
-        <div class="field">
-          <input
-            type="password"
-            value=""
-            name="customer[password]"
-            id="CustomerPassword"
-            autocomplete="current-password"
-            {% if form.errors contains 'form' %}
-              aria-invalid="true"
-            {% endif %}
-            placeholder="{{ 'customer.login_page.password' | t }}"
-          >
-          <label for="CustomerPassword">
-            {{ 'customer.login_page.password' | t }}
-          </label>
-        </div>
-
-        <a href="#recover">
-          {{ 'customer.login_page.forgot_password' | t }}
-        </a>
-      {%- endif -%}
-
-      <button>
-        {{ 'customer.login_page.sign_in' | t }}
-      </button>
-
-      <a href="{{ routes.account_register_url }}">
-        {{ 'customer.login_page.create_account' | t }}
+      
+      <div class="field">
+        <label for="CustomerPassword" class="field__label">
+          Password
+        </label>
+        <input
+          type="password"         
+          value="" 
+          name="customer[password]"
+          id="CustomerPassword"
+          placeholder="Password"
+          autocomplete="off"
+          class="field__input"
+          minlength="8"
+          required
+          title="Password must be at least 8 characters long"
+        >
+        <small id="CustomerPassword-error" class="form__message" style="color: red; display: none;">
+          Password must be at least 8 characters long.
+        </small>
+      </div>
+      
+      
+      <a href="#recover">
+        {{ 'customer.login_page.forgot_password' | t }}
       </a>
+      
+      <button type="submit">
+        Login
+      </button>
+      
+<div class="new">
+      <p>
+        Don't have an Account? 
+        <a href="{{ routes.account_register_url }}">
+         Sign Up
+        </a>
+      </p>
+ </div>
     {%- endform -%}
   </div>
 
@@ -206,3 +266,72 @@
   ]
 }
 {% endschema %}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form[novalidate]');
+    const emailInput = document.getElementById('CustomerEmail');
+    const passwordInput = document.getElementById('CustomerPassword');
+    const emailError = document.getElementById('CustomerEmail-error');
+    const passwordError = document.getElementById('CustomerPassword-error');
+    let emailTouched = false;
+    let passwordTouched = false;
+
+    // Function to validate email
+    const validateEmail = () => {
+      if (emailTouched) {
+        if (emailInput.validity.valueMissing) {
+          emailError.textContent = 'Email is required.';
+          emailError.style.display = 'block';
+        } else if (!emailInput.validity.valid) {
+          emailError.textContent = 'Please enter a valid email address.';
+          emailError.style.display = 'block';
+        } else {
+          emailError.style.display = 'none';
+        }
+      }
+    };
+
+    // Function to validate password
+    const validatePassword = () => {
+      if (passwordTouched) {
+        if (passwordInput.validity.valueMissing) {
+          passwordError.textContent = 'Password is required.';
+          passwordError.style.display = 'block';
+        } else if (passwordInput.validity.tooShort) {
+          passwordError.textContent = 'Password must be at least 8 characters long.';
+          passwordError.style.display = 'block';
+        } else {
+          passwordError.style.display = 'none';
+        }
+      }
+    };
+
+    // Mark fields as touched on blur
+    emailInput.addEventListener('blur', () => {
+      emailTouched = true;
+      validateEmail();
+    });
+
+    passwordInput.addEventListener('blur', () => {
+      passwordTouched = true;
+      validatePassword();
+    });
+
+    // Validate on input
+    emailInput.addEventListener('input', validateEmail);
+    passwordInput.addEventListener('input', validatePassword);
+
+    // Form submission validation
+    form.addEventListener('submit', (event) => {
+      emailTouched = true;
+      passwordTouched = true;
+      validateEmail();
+      validatePassword();
+
+      // Prevent form submission if validation fails
+      if (!emailInput.validity.valid || !passwordInput.validity.valid) {
+        event.preventDefault();
+      }
+    });
+  });
+</script>

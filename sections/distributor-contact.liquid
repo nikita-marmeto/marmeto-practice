@@ -1,0 +1,119 @@
+<style>
+    .distributor-contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+  
+    .distributor-contact-form .field {
+      margin-bottom: 16px;
+    }
+  
+    .distributor-contact-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+  
+    .distributor-contact-form input,
+    .distributor-contact-form select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  
+    .distributor-contact-form .submit-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  
+    .distributor-contact-form .submit-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+  
+<form method="POST" action="/contact" class="distributor-contact-form">
+    <div class="field">
+      <label for="DistributorForm-FullName">Full Name*</label>
+      <input
+        type="text"
+        name="full_name"
+        id="DistributorForm-FullName"
+        required
+        placeholder="Enter your full name"
+      >
+    </div>
+  
+    <div class="field">
+      <label for="DistributorForm-Phone">Phone Number*</label>
+      <div style="display: flex;">
+        <select name="phone_country_code" id="DistributorForm-CountryCode" required>
+          <option value="+91" selected>India +91</option>
+          <!-- Add other country codes as needed -->
+        </select>
+        <input
+          type="tel"
+          name="phone_number"
+          id="DistributorForm-Phone"
+          required
+          placeholder="Enter your phone number"
+        >
+      </div>
+    </div>
+  
+    <div class="field">
+      <label for="DistributorForm-Email">Email*</label>
+      <input
+        type="email"
+        name="email"
+        id="DistributorForm-Email"
+        required
+        placeholder="Enter your email address"
+      >
+    </div>
+  
+    <div class="field">
+      <label for="DistributorForm-Country">Country of Dealership*</label>
+      <input
+        type="text"
+        name="country_of_dealership"
+        id="DistributorForm-Country"
+        required
+        placeholder="Enter the country of dealership"
+      >
+    </div>
+  
+    <div class="field">
+      <label for="DistributorForm-CompanyName">Company Name</label>
+      <input
+        type="text"
+        name="company_name"
+        id="DistributorForm-CompanyName"
+        placeholder="Enter your company name"
+      >
+    </div>
+  
+    <div class="field">
+      <label for="DistributorForm-Website">Website</label>
+      <input
+        type="url"
+        name="website"
+        id="DistributorForm-Website"
+        placeholder="Enter your website URL"
+      >
+    </div>
+  
+    <div class="field">
+      <button type="submit" class="submit-btn">Submit</button>
+    </div>
+  </form>
+  

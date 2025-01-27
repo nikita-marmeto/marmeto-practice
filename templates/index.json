@@ -40,89 +40,52 @@
         "padding_bottom": 52
       }
     },
-    "slideshow_kgmzxP": {
-      "type": "slideshow",
+    "custom_slideshow_qKePKn": {
+      "type": "custom-slideshow",
       "blocks": {
-        "slide_BQGdy6": {
+        "slide_gjrFpC": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/image_24.png",
-            "heading": "Image slide",
-            "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
-            "link": "",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": true,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "",
-            "text_alignment_mobile": "center"
+            "slide_image": "shopify://shop_images/image_24.png",
+            "dot_color": "#f1900a",
+            "slide_link": ""
+          }
+        },
+        "slide_rFxV3T": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/WhatsApp_Image_2025-01-02_at_12.36.22_PM_1_hhh.webp",
+            "dot_color": "#f6fd11",
+            "slide_link": ""
+          }
+        },
+        "slide_kgdH3D": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/9_1.jpg",
+            "dot_color": "#f10a0a",
+            "slide_link": ""
           }
         }
       },
       "block_order": [
-        "slide_BQGdy6"
+        "slide_gjrFpC",
+        "slide_rFxV3T",
+        "slide_kgdH3D"
       ],
       "settings": {
-        "layout": "full_bleed",
-        "slide_height": "medium",
-        "slider_visual": "dots",
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "image_behavior": "none",
-        "show_text_below": true,
-        "accessibility_info": "Slideshow about our brand"
+        "pagination_position": 15
       }
     },
-    "image_with_text_gQJqja": {
-      "type": "image-with-text",
-      "blocks": {
-        "heading_3zpHie": {
-          "type": "heading",
-          "disabled": true,
-          "settings": {
-            "heading": "Image with text",
-            "heading_size": "h1"
-          }
-        },
-        "text_JFqKDn": {
-          "type": "text",
-          "settings": {
-            "text": "<p><strong>Embark on a journey of health and joy with Gumazing, a brand meticulously designed to enrich the lives of children through delectable and nutritious supplements.<br/>Gumazing isn’t just a product it’s an unwavering commitment to ensuring every child receives the indispensable nutrients required to thrive.</strong></p>",
-            "text_style": "body"
-          }
-        },
-        "button_yVWyjf": {
-          "type": "button",
-          "disabled": true,
-          "settings": {
-            "button_label": "Learn More",
-            "button_link": "",
-            "button_style_secondary": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_3zpHie",
-        "text_JFqKDn",
-        "button_yVWyjf"
-      ],
+    "custom_image_with_text_w7Pcmj": {
+      "type": "custom-image-with-text",
       "settings": {
-        "image": "shopify://shop_images/Founder_1.png",
-        "height": "small",
-        "desktop_image_width": "medium",
-        "layout": "image_first",
-        "desktop_content_position": "top",
-        "desktop_content_alignment": "center",
-        "content_layout": "no-overlap",
-        "section_color_scheme": "",
-        "color_scheme": "",
-        "image_behavior": "zoom-in",
-        "mobile_content_alignment": "left",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "section_heading": "<p>About</p>",
+        "content_position": "left",
+        "section_image": "shopify://shop_images/Frame_1000006605.png",
+        "section_text": "Embark on a journey of health and joy withGumazing, a brand meticulously designed toenrich the lives of children through delectable andnutritious supplements.Gumazing isn’t just a product it’s an unwaveringcommitment to ensuring every child receives theindispensable nutrients required to thrive.",
+        "section_button": "<p>Learn More</p>",
+        "button_url": ""
       }
     },
     "shop_by_category_rU6KtG": {
@@ -131,15 +94,44 @@
         "card_pd9ic9": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/image_11.png",
+            "collection": "gummies",
+            "image": "shopify://shop_images/Frame_21.png",
             "image_url": "",
-            "title": "Gummies"
+            "title": ""
           }
         },
         "card_DXDHK8": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/image_12.png",
+            "collection": "",
+            "image": "shopify://shop_images/Frame_22.png",
+            "image_url": "",
+            "title": ""
+          }
+        },
+        "card_zLybyU": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/Frame_23.png",
+            "image_url": "",
+            "title": ""
+          }
+        },
+        "card_BaAHnP": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/Group_1000004951.png",
+            "image_url": "",
+            "title": ""
+          }
+        },
+        "card_WnWpac": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/Frame_24.png",
             "image_url": "",
             "title": ""
           }
@@ -147,17 +139,181 @@
       },
       "block_order": [
         "card_pd9ic9",
-        "card_DXDHK8"
+        "card_DXDHK8",
+        "card_zLybyU",
+        "card_BaAHnP",
+        "card_WnWpac"
       ],
       "settings": {
         "section_heading": "Shop By Category"
+      }
+    },
+    "shop_by_category_6YRqXJ": {
+      "type": "shop-by-category",
+      "blocks": {
+        "card_EHHtmc": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/Frame_1000006956.png",
+            "image_url": "",
+            "title": ""
+          }
+        },
+        "card_b44Njz": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/Frame_1000006955.png",
+            "image_url": "",
+            "title": ""
+          }
+        },
+        "card_w6TUQM": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/Frame_1000006957.png",
+            "image_url": "",
+            "title": ""
+          }
+        },
+        "card_39p4fa": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/Frame_1000006958.png",
+            "image_url": "",
+            "title": ""
+          }
+        },
+        "card_e87BJh": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/Frame_1000006959.png",
+            "image_url": "",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_EHHtmc",
+        "card_b44Njz",
+        "card_w6TUQM",
+        "card_39p4fa",
+        "card_e87BJh"
+      ],
+      "settings": {
+        "section_heading": "Voice Of Trust"
+      }
+    },
+    "custom_slideshow_8BBA8m": {
+      "type": "custom-slideshow",
+      "blocks": {
+        "slide_Xd3t3p": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Frame_1000006638.png",
+            "dot_color": "#946b6b",
+            "slide_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_Xd3t3p"
+      ],
+      "settings": {
+        "pagination_position": 15
+      }
+    },
+    "custom_collapsble_section_Bwdn8c": {
+      "type": "custom-collapsble-section",
+      "blocks": {
+        "collapsible_row_iPTVGh": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Why Gummazing",
+            "row_content": "<p>Gumazing advocates for improved early childhood nutrition,</p><p> focusing on nutrient-rich diets for fussy eaters to promote </p><p>physical development and well-adjusted children.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_e4ymHd": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Did you know? How Health Supplements helps kids",
+            "row_content": "<p>Gumazing advocates for improved early childhood nutrition, </p><p>focusing on nutrient-rich diets for fussy eaters to promote </p><p>physical development and well-adjusted children.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_JbxiFy": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What is the best time to consume these gummies?",
+            "row_content": "<p>Gumazing advocates for improved early childhood nutrition,</p><p> focusing on nutrient-rich diets for fussy eaters to promote </p><p>physical development and well-adjusted children.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_E9iEyT": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "For how long does my child need to consume these gummies?",
+            "row_content": "<p>Gumazing advocates for improved early childhood nutrition,</p><p> focusing on nutrient-rich diets for fussy eaters to promote </p><p>physical development and well-adjusted children.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_C4zCVY": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Are these gummies suitable for vegetarian diets?",
+            "row_content": "<p>Gumazing advocates for improved early childhood nutrition,</p><p> focusing on nutrient-rich diets for fussy eaters to promote</p><p> physical development and well-adjusted children</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_7bkwkK": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How Can I Support My Child's Overall Health and Well-being Through Nutrition?",
+            "row_content": "<p>Gumazing advocates for improved early childhood nutrition,</p><p> focusing on nutrient-rich diets for fussy eaters to promote</p><p> physical development and well-adjusted children</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_iPTVGh",
+        "collapsible_row_e4ymHd",
+        "collapsible_row_JbxiFy",
+        "collapsible_row_E9iEyT",
+        "collapsible_row_C4zCVY",
+        "collapsible_row_7bkwkK"
+      ],
+      "settings": {
+        "caption": "No added sugar",
+        "collapsible_heading": "<strong>FAQ</strong>",
+        "layout": "none"
+      }
+    },
+    "custom_image_with_text_Wdgbdw": {
+      "type": "custom-image-with-text",
+      "disabled": true,
+      "settings": {
+        "section_heading": "<p>Meet Krishika Bahirwani</p>",
+        "content_position": "right",
+        "section_image": "shopify://shop_images/Mask_group.png",
+        "section_text": "Embark on a journey of health and joy withGumazing, a brand meticulously designed toenrich the lives of children through delectable andnutritious supplements.Gumazing isn’t just a product it’s an unwaveringcommitment to ensuring every child receives theindispensable nutrients required to thrive.",
+        "section_button": "<p>Learn More</p>",
+        "button_url": ""
       }
     }
   },
   "order": [
     "rich_text_7Pfkya",
-    "slideshow_kgmzxP",
-    "image_with_text_gQJqja",
-    "shop_by_category_rU6KtG"
+    "custom_slideshow_qKePKn",
+    "custom_image_with_text_w7Pcmj",
+    "shop_by_category_rU6KtG",
+    "shop_by_category_6YRqXJ",
+    "custom_slideshow_8BBA8m",
+    "custom_collapsble_section_Bwdn8c",
+    "custom_image_with_text_Wdgbdw"
   ]
 }

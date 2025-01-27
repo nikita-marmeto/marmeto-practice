@@ -1,0 +1,237 @@
+<style>
+    .collapsible-section {
+      padding: 20px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    
+    .section-caption {
+      font-size: 1rem;
+      margin-top: 10px;
+      color: #666;
+    }
+    
+    .collapsible-section-heading {
+      {% comment %} display:flex; {% endcomment %}
+      font-size: 4.8rem;
+      line-height:120%;
+      margin-bottom: 20px;
+      color:  #ffbb8a;
+      font-weight: 700;
+      margin-bottom: 36px;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, .25), 0px 4px 4px rgba(0, 0, 0, .25);
+      font-family: Baloo Tamma,system-ui
+    }
+    .collapsible-section-heading span{
+      color:#ffcd00;
+      font-size:3.2rem;
+    }
+    
+    .collapsible-content {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .collapsible-box {
+        border: 1px solid #ddd;
+        border-radius: 40px;
+        padding: 24px;
+        background-color:rgba(255, 240, 230, 1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+      .collapsible-header{
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+
+    }
+    
+    .collapsible-header h3{
+      font-size: 24px;
+      font-weight:700;
+      Line-height:36px;
+      margin-bottom: 10px;
+      color: #444;
+      font-family: Din, sans-serif;      
+    }
+    
+    .row-content {
+      margin-bottom: 10px;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 34px;
+      color: rgba(var(--color-foreground));
+      {% comment %} word-break: break-word; {% endcomment %}
+    }
+    
+    .row-link {
+      display: inline-block;
+      font-size: 1rem;
+      color: #007acc;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+    
+    .row-link:hover {
+      text-decoration: underline;
+    }
+    .arrow {
+          transition: transform 0.3s ease;
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          border: solid #444;
+          border-width: 0 3px 3px 0;
+          transform: rotate(45deg);
+          transition: transform 0.3s ease;
+        }
+      
+    .arrow.collapsed {
+          {% comment %} transform: rotate(90deg); {% endcomment %}
+          transform: rotate(-135deg);
+
+        }
+      
+    .collapsible-body {
+          display: none;
+          padding-top: 10px;
+          font-size: 1rem;
+          color: #555;
+        }
+      
+    .collapsible-body.active {
+          display: block;
+        }
+    </style>
+
+<section class="collapsible-section">
+    {% comment %} {% if section.settings.caption %}
+      <p class="section-caption">{{ section.settings.caption }}</p>
+    {% endif %} {% endcomment %}
+  
+    {% if section.settings.collapsible_heading %}
+      <h2 class="collapsible-section-heading">{{ section.settings.collapsible_heading }} <span>S</span></h2>
+      
+    {% endif %}
+  
+    <div class="collapsible-content">
+      {% for block in section.blocks %}
+        <div class="collapsible-box">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <h3 >{{ block.settings.heading }}</h3>
+                {% comment %} <span class="arrow">&#x25BA;</span>  {% endcomment %}
+                <span class="arrow"></span> 
+
+              </div>
+          <div class="collapsible-body">
+            {% if block.settings.row_content %}
+              <div class="row-content">
+                {{ block.settings.row_content  }}
+              </div>
+            {% endif %}
+  
+            {% comment %} {% if block.settings.page %}
+              <a href="{{ block.settings.page | url }}" class="row-link">
+                {{ block.settings.page | link_title }}
+              </a>
+            {% endif %} {% endcomment %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% schema %}
+{
+  "name": "t:sections.collapsible_content.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "t:sections.collapsible_content.settings.caption.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "collapsible_heading",
+      "label": "t:sections.collapsible_content.settings.heading.label",
+      "default": "t:sections.collapsible_content.settings.heading.default"
+    },
+    {
+        "type": "select",
+        "id": "layout",
+        "label": "t:sections.collapsible_content.settings.layout.label",
+        "options": [
+          {
+            "value": "none",
+            "label": "t:sections.collapsible_content.settings.layout.options__1.label"
+          },
+          {
+            "value": "row",
+            "label": "t:sections.collapsible_content.settings.layout.options__2.label"
+          },
+          {
+            "value": "section",
+            "label": "t:sections.collapsible_content.settings.layout.options__3.label"
+          }
+        ],
+        "default": "none"
+      }
+    ],
+    "blocks": [
+        {
+          "type": "collapsible_row",
+          "name": "t:sections.collapsible_content.blocks.collapsible_row.name",
+          "settings": [
+            {
+              "type": "text",
+              "id": "heading",
+              "default": "t:sections.collapsible_content.blocks.collapsible_row.settings.heading.default",
+              "label": "t:sections.collapsible_content.blocks.collapsible_row.settings.heading.label",
+              "info": "t:sections.collapsible_content.blocks.collapsible_row.settings.heading.info"
+            },
+            {
+                "type": "richtext",
+                "id": "row_content",
+                "label": "t:sections.collapsible_content.blocks.collapsible_row.settings.row_content.label"
+              },
+              {
+                "type": "page",
+                "id": "page",
+                "label": "t:sections.collapsible_content.blocks.collapsible_row.settings.page.label"
+              }
+            ]
+          }
+        ],
+        "presets": [
+            {
+            "name": "custom collapsible"
+            }
+        ]
+    }
+{% endschema %}
+
+<script>
+    function toggleCollapsible(element) {
+      // Close any open collapsible bodies
+      const allBodies = document.querySelectorAll('.collapsible-body');
+      const allArrows = document.querySelectorAll('.arrow');
+  
+      allBodies.forEach(body => body.classList.remove('active'));
+      allArrows.forEach(arrow => arrow.classList.remove('collapsed'));
+  
+      // Open the clicked collapsible body
+      const body = element.nextElementSibling;
+      const arrow = element.querySelector('.arrow');
+  
+      if (!body.classList.contains('active')) {
+        body.classList.add('active');
+        arrow.classList.add('collapsed');
+      }
+    }
+  </script>

@@ -1,0 +1,79 @@
+<style>
+    .shop-by-category {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .grid-item {
+      text-align: center;
+      max-width: 200px;
+    }
+    .grid-item img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    .grid-item h3 {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #333;
+    }
+  </style>
+
+<div class="shop-by-category">
+    <div class="grid">
+      {% for block in section.blocks %}
+        <div class="grid-item">
+          <h2>{{ block.settings.heading }}</h2>
+          <a href="{{ block.settings.collection | link_to: 'collection' }}">
+            <img 
+              src="{{ block.settings.image | img_url: 'medium' }}" 
+              alt="{{ block.settings.title }}" height="200" width="200">
+               <h3>{{ block.settings.title }}</h3>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+ 
+  
+{% schema %}
+{
+    "name": "Shop by Category",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "collection",
+        "name": "Collection 1",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Custom Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          }
+        ]
+      }
+    ],
+     "presets": [
+    {
+    "name": "custom shop by category"
+    }
+     ]
+  }
+  {% endschema %}
